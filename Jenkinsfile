@@ -1,15 +1,18 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Build'){
-            steps{
+
+    stages {
+        stage('Build') {
+            steps {
                 echo 'Building'
-                bat 'text -f index.html'
+                bat 'type index.html'
             }
         }
-        stage('Test'){
-            steps{
-                bat 'grep -q Weekly Time Table index.html'
+
+        stage('Test') {
+            steps {
+                bat 'findstr /C:"Weekly Time Table" index.html'
+                echo 'Test Successful'
             }
         }
     }
